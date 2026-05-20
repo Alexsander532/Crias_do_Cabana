@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Museu Virtual Crias do Cabana - Um museu colaborativo e aberto que preserva e celebra as histórias, memórias e tradições do Aglomerado Cabana do Pai Tomás em Belo Horizonte, MG.">
+    <title>Crias do Cabana - Museu Virtual Colaborativo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Skip Content for Accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Welcome Modal Popup -->
+    <div id="welcome-modal" class="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <h2 id="modal-title" class="modal-title">Seja bem-vindo e bem-vinda.</h2>
+            <hr class="modal-divider">
+            <div class="modal-body">
+                <p>O <em>Museu Virtual Crias do Cabana</em> é um museu <strong>colaborativo</strong>.</p>
+                <p>A sua <strong>construção é permanente</strong> e feita por quem fez e faz parte do Cabana.</p>
+                <p>Sentiu falta de algo? Colabora com a sua história e com suas memórias!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility Sidebar -->
+    <nav id="accessibility-toolbar" class="a11y-toolbar" role="navigation" aria-label="Ferramentas de Acessibilidade">
+        <button id="a11y-toggle" class="a11y-toggle-btn" aria-expanded="false" aria-label="Abrir menu de acessibilidade">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                <title>Ferramentas de Acessibilidade</title>
+                <path d="M50 .8c5.7 0 10.4 4.7 10.4 10.4S55.7 21.6 50 21.6s-10.4-4.7-10.4-10.4S44.3.8 50 .8zM92.2 32l-21.9 2.3c-2.6.3-4.6 2.5-4.6 5.2V94c0 2.9-2.3 5.2-5.2 5.2H60c-2.7 0-4.9-2.1-5.2-4.7l-2.2-24.7c-.1-1.5-1.4-2.5-2.8-2.4-1.3.1-2.2 1.1-2.4 2.4l-2.2 24.7c-.2 2.7-2.5 4.7-5.2 4.7h-.5c-2.9 0-5.2-2.3-5.2-5.2V39.4c0-2.7-2-4.9-4.6-5.2L7.8 32c-2.6-.3-4.6-2.5-4.6-5.2v-.5c0-2.6 2.1-4.7 4.7-4.7h.5c19.3 1.8 33.2 2.8 41.7 2.8s22.4-.9 41.7-2.8c2.6-.2 4.9 1.6 5.2 4.3v1c-.1 2.6-2.1 4.8-4.8 5.1z"/>
+            </svg>
+        </button>
+        <div class="a11y-toolbar-content">
+            <p class="a11y-title">Ferramentas de Acessibilidade</p>
+            <ul class="a11y-list">
+                <li>
+                    <button class="a11y-btn" data-action="resize-plus">
+                        <span class="a11y-icon">A+</span> Aumentar Texto
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="resize-minus">
+                        <span class="a11y-icon">A-</span> Diminuir Texto
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="grayscale">
+                        <span class="a11y-icon">◑</span> Escala de Cinza
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="high-contrast">
+                        <span class="a11y-icon">◆</span> Alto Contraste
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="negative-contrast">
+                        <span class="a11y-icon">◇</span> Contraste Negativo
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="light-background">
+                        <span class="a11y-icon">⬜</span> Fundo Claro
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="links-underline">
+                        <span class="a11y-icon">U</span> Links Sublinhados
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="readable-font">
+                        <span class="a11y-icon">F</span> Fonte Legível
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn a11y-reset" data-action="reset">
+                        <span class="a11y-icon">↺</span> Resetar
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Branding Logo -->
+            <div class="site-branding">
+                <a href="#" class="logo-link">
+                    <img src="assets/logo-horizontal.png" alt="Logo Crias do Cabana" class="custom-logo">
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Trigger -->
+            <button id="mobile-menu-trigger" class="hamburger-btn" aria-label="Abrir menu de navegação" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="navigation-menu" aria-label="Menu principal">
+                <ul class="nav-list">
+                    <li class="menu-item has-dropdown">
+                        <a href="um-museu-colaborativo.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Sobre 
+                            <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="um-museu-colaborativo.html" class="dropdown-link">Um Museu Colaborativo</a></li>
+                            <li><a href="o-programa-sofia.html" class="dropdown-link">O Programa SoFiA</a></li>
+                            <li><a href="o-projeto-artes-de-curar-rezar-brincar.html" class="dropdown-link">O Projeto Artes de Curar, Rezar e Brincar</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">O Aglomerado Cabana do Pai Tomás</a>
+                    </li>
+                    <li class="menu-item has-dropdown">
+                        <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Coleções 
+                            <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="colecoes-artes.html" class="dropdown-link">Artes de Curar, Rezar e Brincar</a></li>
+                            <li><a href="#" class="dropdown-link">Guarda de São Benedito e Nossa Senhora do Rosário</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">Repositório</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="conte-a-sua-historia.html" class="nav-link">Conte a sua História</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Search Toggle Button -->
+            <div class="search-wrap">
+                <button id="search-toggle" class="search-btn" aria-label="Abrir busca" aria-expanded="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div id="search-dropdown" class="search-dropdown-container">
+                    <form class="search-form" action="#" method="get">
+                        <input type="search" placeholder="Pesquisar..." name="s" class="search-input" aria-label="Digite a palavra chave para buscar">
+                        <button type="submit" class="search-submit-btn" aria-label="Enviar busca">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-layout">
+        
+        <!-- Collections Page -->
+        <section class="collections-section" aria-labelledby="collections-title" style="padding: 60px 20px;">
+            <div class="collections-container" style="max-width: 1200px; margin: 0 auto;">
+                
+                <!-- Page Title -->
+                <h1 id="collections-title" style="text-align: center; color: var(--brand-gold); font-size: 2.5rem; margin-bottom: 3rem; font-weight: 600;">COLEÇÕES</h1>
+                
+                <!-- Description Text -->
+                <div style="margin-bottom: 3rem; line-height: 1.8; color: var(--text-dark);">
+                    <p style="margin-bottom: 1rem;">Uma coleção é um conjunto de documentos de diferentes origens que possuem características em comum. Aqui no <em>Museu Crias do Cabana</em> é possível acessar essas coleções e conhecer um pouco melhor sobre os movimentos que constituem o território. As coleções disponíveis são organizadas em diversas histórias da comunidade, reunindo depoimentos, registros audiovisuais, desenhos e mapas cartográficos importantes para a valorização da memória através do cotidiano, das manifestações, das práticas e dos saberes locais.</p>
+                    <p style="margin-bottom: 1rem;">Começamos com três coleções. Com a colaboração de moradoras e moradores, elas serão ampliadas e outras serão criadas a partir das contribuições.</p>
+                    <p style="color: var(--text-dark); font-weight: 600;">Conte a sua história, crie a sua coleção!</p>
+                </div>
+                
+                <!-- Collections Accordion -->
+                <div style="border: 1px solid #e5e7eb;">
+                    
+                    <!-- Accordion Item 1 -->
+                    <div class="accordion-item" style="border-bottom: 1px solid #e5e7eb;">
+                        <button class="accordion-button" style="width: 100%; padding: 20px; text-align: center; background: #fdfbf5; cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--text-dark); border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background-color 0.3s;" onclick="toggleAccordion(this)">
+                            <span style="font-size: 1.3rem;">+</span>
+                            <span>ARTES DE CURAR</span>
+                        </button>
+                        <div class="accordion-content" style="display: none; padding: 0; background: #fdfbf5; border-top: 1px solid #e5e7eb;">
+                            <div style="padding: 40px 20px;">
+                                <h2 style="color: #8c6e4a; text-align: center; font-size: 2rem; margin-bottom: 30px;">ARTES DE CURAR</h2>
+                                <div style="margin-bottom: 30px;">
+                                    <img src="assets/colecoes/ARTES-DE-CURAR-CAPA-scaled.webp" alt="Ervas e folhas" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                                </div>
+                                <div style="color: var(--text-dark); line-height: 1.8; max-width: 1000px; margin: 0 auto 40px auto;">
+                                    <p style="margin-bottom: 20px;">A coleção aborda as artes de curar na Cabana.</p>
+                                    <p style="margin-bottom: 20px;">Já pensou naquele chá que a sua avó fazia quando estava doente? Usou chá de boldo para problemas de estômago? Tomou chá de camomila para se acalmar do estresse da vida? Já fez alguma benzeção? Quantos quintais existiam na Cabana e quantos ainda existem?</p>
+                                    <p>O objetivo desta coleção é registrar os vários saberes que emanam de raizeiros, raizeiras, benzedeiras e outras pessoas que guardam na memória, na oralidade e em seus quintais as artes de curar no Aglomerado Cabana do Pai Tomás.</p>
+                                </div>
+                                <div style="background-color: #836e4f; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1000px; margin: 0 auto;">
+                                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                                        <img src="assets/colecoes/ARTES-DE-CURAR-1-scaled.webp" alt="Artes de Curar" style="width: 100%; height: 100%; object-fit: cover;">
+                                        <img src="assets/colecoes/ARTES-DE-CURAR-3.webp" alt="Artes de Curar Roda" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div>
+                                        <img src="assets/colecoes/ARTES-DE-CURAR-2-scaled.webp" alt="Artes de Curar Vivência" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accordion Item 2 -->
+                    <div class="accordion-item" style="border-bottom: 1px solid #e5e7eb;">
+                        <button class="accordion-button" style="width: 100%; padding: 20px; text-align: center; background: #fdfbf5; cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--text-dark); border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background-color 0.3s;" onclick="toggleAccordion(this)">
+                            <span style="font-size: 1.3rem;">+</span>
+                            <span>ARTES DE REZAR</span>
+                        </button>
+                        <div class="accordion-content" style="display: none; padding: 0; background: #fdfbf5; border-top: 1px solid #e5e7eb;">
+                            <div style="padding: 40px 20px;">
+                                <h2 style="color: var(--brand-gold); text-align: center; font-size: 2rem; margin-bottom: 30px;">ARTES DE REZAR</h2>
+                                <div style="color: var(--text-dark); line-height: 1.8; max-width: 1000px; margin: 0 auto 40px auto;">
+                                    <p style="margin-bottom: 20px;">A coleção aborda as artes de rezar na Cabana.</p>
+                                    <p style="margin-bottom: 20px;">Sabia que a Cabana também é conhecida pela riqueza cultural das suas Guardas de Congado? Quais outras manifestações religiosas envolvem saberes ancestrais na Cabana? Como as religiões trazem componentes da cultura afro-brasileira?</p>
+                                    <p style="margin-bottom: 30px;">O objetivo desta coleção é abordar as artes de rezar. Em ritos, cânticos, vestimentas e consagrações há muita arte.</p>
+                                    <img src="assets/colecoes/Album_1_foto_0026.webp" alt="Artes de Rezar" style="width: 100%; height: auto; margin-bottom: 40px;">
+                                    <h3 style="color: var(--brand-gold); text-align: center; font-size: 1.8rem; margin-bottom: 20px;">AS GUARDAS E REINADOS DO CABANA</h3>
+                                    <div style="text-align: center; color: #a48154; font-size: 2rem; margin-bottom: 20px;">
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+                                    </div>
+                                    <p style="margin-bottom: 20px;">Os Congados e/ou Reinados são festejos religiosos e culturais, introduzidos no Brasil pela população da África Central, escravizada durante o processo violento de colonização. As festas ocorrem em diferentes regiões brasileiras e estão associadas à devoção de santos católicos e divindades de origem africana, como Nossa Senhora do Rosário e São Benedito, acompanhadas pelo cortejo dos Reis Congos e Rainhas Congas. As guardas possuem diferentes tradições e se dividem em linhagens como o Congo, Moçambique, Marujos, Catopê, Vilão, Penacho, Cavaleiros e Candombe, agrupadas em Guardas, Nações, Ternos e Irmandades.</p>
+                                    <div style="text-align: center; color: #a48154; font-size: 2rem; margin-bottom: 40px;">
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <div style="background-color: #dfad49; padding: 40px 20px; text-align: center;">
+                                    <h3 style="color: #000; font-size: 1.5rem; margin-bottom: 30px;">CLIQUE E CONHEÇAS AS GUARDAS DO CABANA</h3>
+                                    <div style="max-width: 800px; margin: 0 auto; background: white; padding: 10px;">
+                                        <img src="assets/colecoes/Album_3_foto_0015.webp" alt="Guarda de Congo" style="width: 100%; height: auto; display: block; margin-bottom: 20px;">
+                                        <div style="padding-bottom: 10px;">
+                                            <a href="#" style="display: inline-block; background: white; color: #555; padding: 10px 30px; text-decoration: none; border: 1px solid #ccc; border-radius: 30px; font-weight: 500;">GUARDA DE CONGO SÃO BENEDITO E NOSSA SENHORA DO ROSÁRIO</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accordion Item 3 -->
+                    <div class="accordion-item">
+                        <button class="accordion-button" style="width: 100%; padding: 20px; text-align: center; background: #fdfbf5; cursor: pointer; font-weight: 600; font-size: 1.05rem; color: var(--text-dark); border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background-color 0.3s;" onclick="toggleAccordion(this)">
+                            <span style="font-size: 1.3rem;">+</span>
+                            <span>ARTES DE BRINCAR</span>
+                        </button>
+                        <div class="accordion-content" style="display: none; padding: 0; background: #fdfbf5; border-top: 1px solid #e5e7eb;">
+                            <div style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
+                                <h2 style="color: #3C9E74; text-align: center; font-size: 2rem; margin-bottom: 30px;">ARTES DE BRINCAR</h2>
+                                <div style="color: var(--text-dark); line-height: 1.8;">
+                                    <p style="margin-bottom: 20px;">Já brincou na rua? Com a internet e o celular, as crianças ainda brincam nas ruas? Como era brincar na Cabana dos anos 1960, 1970 e 1980? Há brincadeiras antigas que ainda acontecem pelas ruas da Cabana?</p>
+                                    <p>O objetivo desta coleção é ser um espaço para o compartilhamento de registros, histórias e memórias sobre as brincadeiras que marcaram a infância de quem mora no território da Cabana. Brincadeiras antigas que ocupavam as ruas, praças, lotes vagos, terreiros e várzeas. Danças, quadrilhas e festejos que traziam beleza e alegria aos dias e noites na comunidade.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+    
+    <script>
+    function toggleAccordion(button) {
+        const content = button.nextElementSibling;
+        const plus = button.querySelector('span:first-child');
+        
+        // Close all other accordion items
+        document.querySelectorAll('.accordion-content').forEach(item => {
+            if (item !== content) {
+                item.style.display = 'none';
+                item.previousElementSibling.querySelector('span:first-child').textContent = '+';
+                item.previousElementSibling.style.backgroundColor = '#fdfbf5';
+            }
+        });
+        
+        // Toggle current item
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            plus.textContent = '−';
+            button.style.backgroundColor = '#f0ede5';
+        } else {
+            content.style.display = 'none';
+            plus.textContent = '+';
+            button.style.backgroundColor = '#fdfbf5';
+        }
+    }
+    </script>
+
+    <!-- Partners / Logos Footer Section -->
+    <footer class="logos-footer">
+        <div class="logos-container">
+            
+            <!-- Realização -->
+            <div class="logos-group">
+                <p class="logos-group-title">Realização</p>
+                <div class="logos-grid grid-1">
+                    <img src="assets/logo-sofia.png" alt="Logo SoFiA Extensão Popular" class="partner-logo">
+                </div>
+            </div>
+
+            <!-- Financiamento -->
+            <div class="logos-group">
+                <p class="logos-group-title">Financiamento</p>
+                <div class="logos-grid grid-2">
+                    <img src="assets/logo-fapemig.png" alt="Logo FAPEMIG" class="partner-logo">
+                    <img src="assets/logo-dedc.png" alt="Logo DEDC CEFET-MG" class="partner-logo">
+                </div>
+            </div>
+
+            <!-- Parceiros -->
+            <div class="logos-group">
+                <p class="logos-group-title">Parceiros</p>
+                <div class="logos-grid grid-4">
+                    <img src="assets/logo-conecta-cabana.png" alt="Logo Conecta Cabana" class="partner-logo">
+                    <img src="assets/logo-compet.png" alt="Logo COMPET CEFET-MG" class="partner-logo">
+                    <img src="assets/logo-pet-connectte.png" alt="Logo PET ConecTTE" class="partner-logo">
+                    <img src="assets/logo-geptt.png" alt="Logo GEPTT" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Footer -->
+    <footer class="bottom-footer">
+        <div class="bottom-container">
+            <p>Copyright &copy; 2026 Crias do Cabana | Powered by Astra WordPress Theme</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+</html>
