@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+    <meta name="description" content="O Programa SoFiA - Extensão popular e divulgação científica no Aglomerado Cabana do Pai Tomás.">
+    <title>O Programa SoFiA - Crias do Cabana</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+</head>
+<body>
+
+    <!-- Skip Content for Accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Accessibility Sidebar -->
+    <nav id="accessibility-toolbar" class="a11y-toolbar" role="navigation" aria-label="Ferramentas de Acessibilidade">
+        <button id="a11y-toggle" class="a11y-toggle-btn" aria-expanded="false" aria-label="Abrir menu de acessibilidade">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                <title>Ferramentas de Acessibilidade</title>
+                <path d="M50 .8c5.7 0 10.4 4.7 10.4 10.4S55.7 21.6 50 21.6s-10.4-4.7-10.4-10.4S44.3.8 50 .8zM92.2 32l-21.9 2.3c-2.6.3-4.6 2.5-4.6 5.2V94c0 2.9-2.3 5.2-5.2 5.2H60c-2.7 0-4.9-2.1-5.2-4.7l-2.2-24.7c-.1-1.5-1.4-2.5-2.8-2.4-1.3.1-2.2 1.1-2.4 2.4l-2.2 24.7c-.2 2.7-2.5 4.7-5.2 4.7h-.5c-2.9 0-5.2-2.3-5.2-5.2V39.4c0-2.7-2-4.9-4.6-5.2L7.8 32c-2.6-.3-4.6-2.5-4.6-5.2v-.5c0-2.6 2.1-4.7 4.7-4.7h.5c19.3 1.8 33.2 2.8 41.7 2.8s22.4-.9 41.7-2.8c2.6-.2 4.9 1.6 5.2 4.3v1c-.1 2.6-2.1 4.8-4.8 5.1z"/>
+            </svg>
+        </button>
+        <div class="a11y-toolbar-content">
+            <p class="a11y-title">Ferramentas de Acessibilidade</p>
+            <ul class="a11y-list">
+                <li>
+                    <button class="a11y-btn" data-action="resize-plus">
+                        <span class="a11y-icon">A+</span> Aumentar Texto
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="resize-minus">
+                        <span class="a11y-icon">A-</span> Diminuir Texto
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="grayscale">
+                        <span class="a11y-icon">◑</span> Escala de Cinza
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="high-contrast">
+                        <span class="a11y-icon">◆</span> Alto Contraste
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="negative-contrast">
+                        <span class="a11y-icon">◇</span> Contraste Negativo
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="light-background">
+                        <span class="a11y-icon">⬜</span> Fundo Claro
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="links-underline">
+                        <span class="a11y-icon">U</span> Links Sublinhados
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="readable-font">
+                        <span class="a11y-icon">F</span> Fonte Legível
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn a11y-reset" data-action="reset">
+                        <span class="a11y-icon">↺</span> Resetar
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Branding Logo -->
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/logo-horizontal.png" alt="Logo Crias do Cabana" class="custom-logo">
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Trigger -->
+            <button id="mobile-menu-trigger" class="hamburger-btn" aria-label="Abrir menu de navegação" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="navigation-menu" aria-label="Menu principal">
+                <ul class="nav-list">
+                    <li class="menu-item has-dropdown">
+                        <a href="um-museu-colaborativo.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Sobre 
+                            <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="um-museu-colaborativo.html" class="dropdown-link">Um Museu Colaborativo</a></li>
+                            <li><a href="o-programa-sofia.html" class="dropdown-link">O Programa SoFiA</a></li>
+                            <li><a href="o-projeto-artes-de-curar-rezar-brincar.html" class="dropdown-link">O Projeto Artes de Curar, Rezar e Brincar</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">O Aglomerado Cabana do Pai Tomás</a>
+                    </li>
+                    <li class="menu-item has-dropdown">
+                        <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Coleções 
+                            <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-link">Artes de Curar</a></li>
+                            <li class="has-submenu">
+                                <a href="#" class="dropdown-link">
+                                    Artes de Rezar
+                                    <svg class="arrow-icon right" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#" class="dropdown-link">Guarda de São Benedito e N. S. do Rosário</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="dropdown-link">Artes de Brincar</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">Repositório</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">Conte a sua História</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Search Toggle Button -->
+            <div class="search-wrap">
+                <button id="search-toggle" class="search-btn" aria-label="Abrir busca" aria-expanded="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div id="search-dropdown" class="search-dropdown-container">
+                    <form class="search-form" action="#" method="get">
+                        <input type="search" placeholder="Pesquisar..." name="s" class="search-input" aria-label="Digite a palavra chave para buscar">
+                        <button type="submit" class="search-submit-btn" aria-label="Enviar busca">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-layout">
+        
+        <!-- Page content section (Starts directly with title, no banner as in original) -->
+        <section class="subpage-content-section no-banner">
+            <div class="subpage-container">
+                
+                <!-- Double arrows icon matching original -->
+                <div class="subpage-icon-wrapper">
+                    <svg aria-hidden="true" class="subpage-heading-icon" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M143 256.3L7 120.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0L313 86.3c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.4 9.5-24.6 9.5-34 .1zm34 192l136-136c9.4-9.4 9.4-24.6 0-33.9l-22.6-22.6c-9.4-9.4-24.6-9.4-33.9 0L160 352.1l-96.4-96.4c-9.4-9.4-24.6-9.4-33.9 0L7 278.3c-9.4 9.4-9.4 24.6 0 33.9l136 136c9.4 9.5 24.6 9.5 34 .1z"></path>
+                    </svg>
+                </div>
+                
+                <h1 class="subpage-main-heading">O Programa SoFiA</h1>
+                
+                <div class="subpage-lead-container text-center">
+                    <p class="subpage-lead-text">O <strong><em>Programa SoFiA</em></strong> realiza ações de extensão popular, divulgação científica e popularização da ciência em territórios vulnerabilizados, sendo o Aglomerado Cabana do Pai Tomás o foco de vários projetos, cursos e eventos.</p>
+                    <p class="subpage-lead-text">SoFiA tem relação com as áreas do conhecimento envolvidas: <strong>So</strong>ciologia, <strong>Fi</strong>losofia e <strong>A</strong>rte. Conheça as ações do SoFiA a partir de seu site e redes sociais:</p>
+                </div>
+
+                <!-- Featured Image -->
+                <div class="subpage-featured-image-container">
+                    <img src="assets/o-projeto-sofia-content.png" alt="O Projeto SoFiA" class="subpage-featured-img">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Partners / Logos Footer Section -->
+    <footer class="logos-footer">
+        <div class="logos-container">
+            <!-- Realização -->
+            <div class="logos-group">
+                <p class="logos-group-title">Realização</p>
+                <div class="logos-grid grid-1">
+                    <img src="assets/logo-sofia.png" alt="Logo SoFiA Extensão Popular" class="partner-logo">
+                </div>
+            </div>
+
+            <!-- Financiamento -->
+            <div class="logos-group">
+                <p class="logos-group-title">Financiamento</p>
+                <div class="logos-grid grid-2">
+                    <img src="assets/logo-fapemig.png" alt="Logo FAPEMIG" class="partner-logo">
+                    <img src="assets/logo-dedc.png" alt="Logo DEDC CEFET-MG" class="partner-logo">
+                </div>
+            </div>
+
+            <!-- Parceiros -->
+            <div class="logos-group">
+                <p class="logos-group-title">Parceiros</p>
+                <div class="logos-grid grid-4">
+                    <img src="assets/logo-conecta-cabana.png" alt="Logo Conecta Cabana" class="partner-logo">
+                    <img src="assets/logo-compet.png" alt="Logo COMPET CEFET-MG" class="partner-logo">
+                    <img src="assets/logo-pet-connectte.png" alt="Logo PET ConecTTE" class="partner-logo">
+                    <img src="assets/logo-geptt.png" alt="Logo GEPTT" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Footer -->
+    <footer class="bottom-footer">
+        <div class="bottom-container">
+            <p>Copyright &copy; 2026 Crias do Cabana | Powered by Astra WordPress Theme</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+</html>
