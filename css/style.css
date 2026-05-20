@@ -85,6 +85,37 @@ body.a11y-readable-font * {
     font-family: Arial, sans-serif !important;
 }
 
+/* Keyframe animations for performance improvement */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading skeleton animations */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
 /* Reset and Base Styles */
 * {
     box-sizing: border-box;
@@ -1041,6 +1072,54 @@ body {
     }
     .subpage-text-column {
         flex: 1 1 100%;
+    }
+}
+
+/* ===== Performance & Animation Improvements ===== */
+
+/* Fade-in animation for images */
+img {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Lazy loaded images */
+img[loading="lazy"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.about-vertical-logo {
+    animation: fadeIn 0.6s ease-in-out, slideUp 0.8s ease-in-out;
+}
+
+.about-logo-column {
+    animation: slideUp 0.8s ease-in-out;
+}
+
+.about-text-column {
+    animation: slideUp 0.8s ease-in-out 0.1s both;
+}
+
+/* Section animations */
+.about-section {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.slider-section {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.slide-item.active {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0s !important;
     }
 }
 
