@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Museu Virtual Crias do Cabana - Coleção Bordado e Memória: Entre Linhas, Afetos e História no Cabana">
+    <title>Crias do Cabana - Museu Virtual Colaborativo - Bordado e Memória</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Bordado & Memória Collection Specific Styles */
+        
+        /* Custom Slider */
+        .bordado-slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border: 15px solid white;
+            border-bottom: none;
+        }
+        .bordado-slider-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .bordado-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+        }
+        .bordado-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .bordado-slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .bordado-slider-arrow:hover {
+            background: #046bd2;
+        }
+        .bordado-slider-arrow.prev { left: 20px; }
+        .bordado-slider-arrow.next { right: 20px; }
+        .bordado-slider-dots {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        .bordado-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .bordado-dot.active {
+            background-color: white;
+        }
+        
+        .bordado-hero-slider {
+            width: 100%;
+            background-color: #1e293b;
+        }
+        
+        .bordado-title-section {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background-color: #fdfbf5;
+        }
+        .bordado-title-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #8B5E3C;
+            margin: 0 0 5px;
+            line-height: 1.3;
+        }
+        .bordado-title-section .subtitle {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.6rem;
+            color: #DEAA3A;
+            margin-top: 10px;
+        }
+        
+        .bordado-intro {
+            background-color: #fdfbf5;
+            padding: 20px 20px 50px;
+        }
+        .bordado-intro .intro-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .bordado-intro p {
+            color: #3C9E74;
+            font-family: "Open Sans", sans-serif;
+            font-size: 1.15rem;
+            font-weight: 300;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+        
+        /* Gallery Grid */
+        .bordado-gallery-section {
+            background-color: #fdfbf5;
+            padding: 0 20px 60px;
+        }
+        .bordado-gallery-section .section-label {
+            text-align: center;
+            color: #8B5E3C;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .bordado-gallery-section .section-label::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #DEAA3A;
+            margin: 15px auto 0;
+        }
+        
+        .bordado-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .bordado-gallery a {
+            display: block;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .bordado-gallery a:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+        .bordado-gallery img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .bordado-gallery a:hover img {
+            transform: scale(1.06);
+        }
+        
+        /* Testimonials */
+        .bordado-testimonials {
+            background-color: #fdfbf5;
+            padding: 0 20px 60px;
+        }
+        .bordado-testimonial-card {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .bordado-testimonial-card.reverse {
+            direction: rtl;
+        }
+        .bordado-testimonial-card.reverse .testimonial-text {
+            direction: ltr;
+        }
+        .bordado-testimonial-card .testimonial-image {
+            overflow: hidden;
+        }
+        .bordado-testimonial-card .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 400px;
+            display: block;
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .bordado-testimonial-card .testimonial-image:hover img {
+            transform: scale(1.05);
+        }
+        .bordado-testimonial-card .testimonial-text {
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bordado-testimonial-card .testimonial-name {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.8rem;
+            color: #DEAA3A;
+            margin-bottom: 20px;
+        }
+        .bordado-testimonial-card .testimonial-body {
+            color: #334155;
+            font-family: "Open Sans", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.85;
+            font-style: italic;
+        }
+        .bordado-testimonial-card .testimonial-body p {
+            margin-bottom: 15px;
+        }
+        .bordado-testimonial-card .testimonial-body p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Minimal Audio Player */
+        .audio-player-mini {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .audio-player-mini audio {
+            width: 100%;
+            height: 36px;
+            border-radius: 18px;
+        }
+        .audio-player-mini audio::-webkit-media-controls-panel {
+            background-color: #fdfbf5;
+        }
+        .audio-player-mini .audio-label {
+            font-family: 'Indie Flower', cursive;
+            color: #DEAA3A;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        
+        /* Section divider */
+        .bordado-divider {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0 50px;
+            color: #DEAA3A;
+        }
+        
+        /* Custom Lightbox */
+        .bordado-lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .bordado-lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .bordado-lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            animation: lightboxIn 0.35s ease-out;
+        }
+        @keyframes lightboxIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .bordado-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s, border-color 0.2s;
+            z-index: 10;
+            line-height: 1;
+        }
+        .bordado-lightbox-close:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bordado-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bordado-testimonial-card {
+                grid-template-columns: 1fr;
+            }
+            .bordado-testimonial-card .testimonial-image img {
+                max-height: 350px;
+            }
+        }
+        @media (max-width: 640px) {
+            .bordado-gallery {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .bordado-gallery img {
+                height: 200px;
+            }
+            .bordado-title-section h1 {
+                font-size: 1.7rem;
+            }
+            .bordado-title-section .subtitle {
+                font-size: 1.2rem;
+            }
+            .bordado-testimonial-card .testimonial-text {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Skip Content for Accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Welcome Modal Popup -->
+    <div id="welcome-modal" class="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <h2 id="modal-title" class="modal-title">Seja bem-vindo e bem-vinda.</h2>
+            <hr class="modal-divider">
+            <div class="modal-body">
+                <p>O <em>Museu Virtual Crias do Cabana</em> é um museu <strong>colaborativo</strong>.</p>
+                <p>A sua <strong>construção é permanente</strong> e feita por quem fez e faz parte do Cabana.</p>
+                <p>Sentiu falta de algo? Colabora com a sua história e com suas memórias!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility Sidebar -->
+    <nav id="accessibility-toolbar" class="a11y-toolbar" role="navigation" aria-label="Ferramentas de Acessibilidade">
+        <button id="a11y-toggle" class="a11y-toggle-btn" aria-expanded="false" aria-label="Abrir menu de acessibilidade">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                <title>Ferramentas de Acessibilidade</title>
+                <path d="M50 .8c5.7 0 10.4 4.7 10.4 10.4S55.7 21.6 50 21.6s-10.4-4.7-10.4-10.4S44.3.8 50 .8zM92.2 32l-21.9 2.3c-2.6.3-4.6 2.5-4.6 5.2V94c0 2.9-2.3 5.2-5.2 5.2H60c-2.7 0-4.9-2.1-5.2-4.7l-2.2-24.7c-.1-1.5-1.4-2.5-2.8-2.4-1.3.1-2.2 1.1-2.4 2.4l-2.2 24.7c-.2 2.7-2.5 4.7-5.2 4.7h-.5c-2.9 0-5.2-2.3-5.2-5.2V39.4c0-2.7-2-4.9-4.6-5.2L7.8 32c-2.6-.3-4.6-2.5-4.6-5.2v-.5c0-2.6 2.1-4.7 4.7-4.7h.5c19.3 1.8 33.2 2.8 41.7 2.8s22.4-.9 41.7-2.8c2.6-.2 4.9 1.6 5.2 4.3v1c-.1 2.6-2.1 4.8-4.8 5.1z"/>
+            </svg>
+        </button>
+        <div class="a11y-toolbar-content">
+            <p class="a11y-title">Ferramentas de Acessibilidade</p>
+            <ul class="a11y-list">
+                <li>
+                    <button class="a11y-btn" data-action="resize-plus">
+                        <span class="a11y-icon">A+</span> Aumentar Texto
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="resize-minus">
+                        <span class="a11y-icon">A-</span> Diminuir Texto
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="grayscale">
+                        <span class="a11y-icon">◑</span> Escala de Cinza
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="high-contrast">
+                        <span class="a11y-icon">◆</span> Alto Contraste
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="negative-contrast">
+                        <span class="a11y-icon">◇</span> Contraste Negativo
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="light-background">
+                        <span class="a11y-icon">⬜</span> Fundo Claro
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="links-underline">
+                        <span class="a11y-icon">U</span> Links Sublinhados
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn" data-action="readable-font">
+                        <span class="a11y-icon">F</span> Fonte Legível
+                    </button>
+                </li>
+                <li>
+                    <button class="a11y-btn a11y-reset" data-action="reset">
+                        <span class="a11y-icon">↺</span> Resetar
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Branding Logo -->
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/logo-horizontal.png" alt="Logo Crias do Cabana" class="custom-logo">
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Trigger -->
+            <button id="mobile-menu-trigger" class="hamburger-btn" aria-label="Abrir menu de navegação" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="navigation-menu" aria-label="Menu principal">
+                <ul class="nav-list">
+                    <li class="menu-item has-dropdown">
+                        <a href="um-museu-colaborativo.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Sobre 
+                            <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="um-museu-colaborativo.html" class="dropdown-link">Um Museu Colaborativo</a></li>
+                            <li><a href="o-programa-sofia.html" class="dropdown-link">O Programa SoFiA</a></li>
+                            <li><a href="o-projeto-artes-de-curar-rezar-brincar.html" class="dropdown-link">O Projeto Artes de Curar, Rezar e Brincar</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">O Aglomerado Cabana do Pai Tomás</a>
+                    </li>
+                    <li class="menu-item has-dropdown">
+                        <a href="colecoes-artes.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Coleções 
+                            <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="colecoes-artes.html" class="dropdown-link">Artes de Curar, Rezar e Brincar</a></li>
+                            <li><a href="guarda-de-congo-sao-benedito.html" class="dropdown-link">Guarda de São Benedito e Nossa Senhora do Rosário</a></li>
+                            <li><a href="bordado-e-memoria.html" class="dropdown-link">Bordado e Memória</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">Repositório</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="conte-a-sua-historia.html" class="nav-link">Conte a sua História</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Search Toggle Button -->
+            <div class="search-wrap">
+                <button id="search-toggle" class="search-btn" aria-label="Abrir busca" aria-expanded="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div id="search-dropdown" class="search-dropdown-container">
+                    <form class="search-form" action="#" method="get">
+                        <input type="search" placeholder="Pesquisar..." name="s" class="search-input" aria-label="Digite a palavra chave para buscar">
+                        <button type="submit" class="search-submit-btn" aria-label="Enviar busca">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-layout">
+        
+        <!-- Title Section -->
+        <section class="bordado-title-section">
+            <h1>BORDADO E MEMÓRIA</h1>
+            <p class="subtitle">Entre Linhas, Afetos e História no Cabana</p>
+        </section>
+        
+        <!-- Hero Slider -->
+        <section class="bordado-hero-slider" aria-label="Carrossel de imagens da oficina de bordado">
+            <div class="bordado-slider-wrapper" id="bordado-slider">
+                <div class="bordado-slider-container" id="bordado-slider-container">
+                    <!-- Slides built dynamically by JS -->
+                </div>
+                <button class="bordado-slider-arrow prev" aria-label="Imagem anterior">&#10094;</button>
+                <button class="bordado-slider-arrow next" aria-label="Próxima imagem">&#10095;</button>
+                <div class="bordado-slider-dots" id="bordado-slider-dots">
+                    <!-- Dots built dynamically -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Introduction Text -->
+        <section class="bordado-intro">
+            <div class="intro-container">
+                <p>Em meio a linhas e bordados, histórias sobre o Cabana foram recontadas e escutadas em grupo. O tempo de bordar as fotos acompanha o tempo de olhar com cuidado, para fora e para dentro, permitindo a demora e proporcionando experiências de compartilhar lembranças e perceber como elas nos atravessam.</p>
+                <p>O projeto SoFiA, em uma parceria sensível com o Grupo Fios da UFMG, promoveu em março de 2026 uma oficina de bordado e memória que transformou o fazer manual em um ato de resistência e preservação histórica.</p>
+                <p>Mais do que aprender uma técnica artesanal, o encontro propôs um mergulho na identidade de cada um. A matéria-prima não foi aleatória: os bordados ganharam vida sobre fotografias trazidas e escolhidas pelos próprios participantes, fragmentos de vida que guardam o valor afetivo de quem habita e constrói o território.</p>
+            </div>
+        </section>
+        
+        <!-- Section Divider -->
+        <div class="bordado-divider">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="7 13 12 18 17 13"></polyline>
+                <polyline points="7 6 12 11 17 6"></polyline>
+            </svg>
+        </div>
+        
+        <!-- Gallery Section -->
+        <section class="bordado-gallery-section">
+            <h2 class="section-label">Memórias Bordadas</h2>
+            <div class="bordado-gallery" id="bordado-gallery">
+                <!-- Images loaded dynamically via JS -->
+            </div>
+        </section>
+        
+        <!-- Section Divider -->
+        <div class="bordado-divider">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="7 13 12 18 17 13"></polyline>
+                <polyline points="7 6 12 11 17 6"></polyline>
+            </svg>
+        </div>
+        
+        <!-- Testimonials Section -->
+        <section class="bordado-testimonials">
+            <h2 style="text-align: center; color: #8B5E3C; font-size: 1.8rem; font-weight: 600; margin-bottom: 50px; position: relative;">
+                As Memórias Bordadas na Oficina
+                <span style="display: block; width: 80px; height: 3px; background: #DEAA3A; margin: 15px auto 0;"></span>
+            </h2>
+            
+            <!-- Testimonial 1 - Dona Ivanete -->
+            <div class="bordado-testimonial-card">
+                <div class="testimonial-image">
+                    <img src="assets/colecoes/bordado-memoria/IMG_4729.webp" alt="Bordado de Dona Ivanete">
+                </div>
+                <div class="testimonial-text">
+                    <h3 class="testimonial-name">Dona Ivanete</h3>
+                    <div class="audio-player-mini">
+                        <span class="audio-label">🎧 Ouvir:</span>
+                        <audio controls preload="metadata">
+                            <source src="assets/colecoes/Audiosenhora1.mpeg" type="audio/mpeg">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    </div>
+                    <div class="testimonial-body">
+                        <p>Quando eu vim aqui para Belo Horizonte, eu morava no bairro da Serra, aí eu resolvi, um dia meu filho estava internado, aí eu resolvi vir, mudar de casa. Eu morava na Ferra, e falei que eu ia pegar o primeiro ônibus e parar nesse lugar, e aqui eu ia ficar. Aí sim, eu peguei o ônibus e parei no final desse ônibus. Eu parei aqui no Vista Alegre. Aqui, onde eu moro agora.</p>
+                        <p>Aí, quando eu cheguei há… pode falar 30 anos atrás, né? Ou menos, porque eu tinha menos idade. Aqui era muito bom, morava perto do Rio Arruda, só que na época não era o Rio Arruda, porque ele era limpo, né? Então, tinha plantações, tinha tudo, antes de modificar aqui, que agora cresceu bastante, né?</p>
+                        <p>Então o Rio Arrudas era limpinho, que dava até pra gente ficar perto e tal, não era poluído nem nada. Mudou muito, tinha nascentes e tal, sabe? E agora o Cabana modificou bastante, mas ainda continua sendo um lugar bom pra morar, né? E tem umas lembranças boas, né? Que a gente lembra, né? Das coisas boas que aconteceu antes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 - Dona Carmelita -->
+            <div class="bordado-testimonial-card reverse">
+                <div class="testimonial-image">
+                    <img src="assets/colecoes/bordado-memoria/IMG_4710.webp" alt="Bordado de Dona Carmelita">
+                </div>
+                <div class="testimonial-text">
+                    <h3 class="testimonial-name">Dona Carmelita</h3>
+                    <div class="audio-player-mini">
+                        <span class="audio-label">🎧 Ouvir:</span>
+                        <audio controls preload="metadata">
+                            <source src="assets/colecoes/Audiosenhor2.ogg" type="audio/ogg">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    </div>
+                    <div class="testimonial-body">
+                        <p>O projeto de bordado foi uma experiência nova, né? Bordar uma foto é muito diferente e gratificante. E, ao mesmo tempo, há duas figuras que representam muito a cultura do Cabana, que é o Sr. José Francisco e Odete Maria. Todos os dois representam o Congado na nossa comunidade, na Grande Cabana, cada um com a sua realidade, mas uma realidade no Rosário de Maria, isso é importante.</p>
+                        <p>A gente está preservando a nossa cultura, a gente está preservando o meio de mostrar para as pessoas o que é bonito, o que é lindo através das cores. Não só a realidade deles em si, de estar representando com o seu canto, com a sua dança, a gente também está valorizando a responsabilidade e também valorizar o significado deles na nossa vida, no nosso dia-a-dia, na nossa cultura, no nosso bairro, para nossas crianças, que é o mais importante, eles, a idade que têm e ainda estar fé, com a fé viva, é isso que importa.</p>
+                        <p>Então, bordá-los, fazer um bordado, tentar fazer um bordado para valorizar tudo aquilo que eles representam para a gente foi muito gratificante. E agradeço muito a iniciativa do projeto. Foi muito lindo. Foi muito bom participar. Espero ter mais vezes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Dynamic Gallery & Slider Script -->
+    <script>
+    (function() {
+        const sliderImages = [
+            'IMG_4605.webp', 'IMG_4614.webp', 'IMG_4641.webp',
+            'IMG_4675.webp', 'IMG_4710.webp', 'IMG_4729.webp'
+        ];
+        
+        const galleryPool = [
+            'IMG_4605.webp', 'IMG_4614.webp', 'IMG_4629.webp', 'IMG_4641.webp',
+            'IMG_4658.webp', 'IMG_4675.webp', 'IMG_4684.webp', 'IMG_4710.webp',
+            'IMG_4726.webp', 'IMG_4729.webp'
+        ];
+        
+        const basePath = 'assets/colecoes/bordado-memoria/';
+        
+        // ===== CUSTOM LIGHTBOX =====
+        function createLightbox() {
+            const overlay = document.createElement('div');
+            overlay.className = 'bordado-lightbox-overlay';
+            overlay.id = 'bordado-lightbox';
+            
+            const img = document.createElement('img');
+            img.alt = 'Bordado ampliado';
+            overlay.appendChild(img);
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'bordado-lightbox-close';
+            closeBtn.innerHTML = '&times;';
+            closeBtn.setAttribute('aria-label', 'Fechar visualização');
+            overlay.appendChild(closeBtn);
+            
+            function close() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) close();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) close();
+            });
+            
+            document.body.appendChild(overlay);
+            return { overlay: overlay, img: img, open: function(src) {
+                img.src = src;
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }};
+        }
+        
+        const lightbox = createLightbox();
+        
+        // ===== SLIDER =====
+        const sliderContainer = document.getElementById('bordado-slider-container');
+        const sliderDots = document.getElementById('bordado-slider-dots');
+        const sliderWrapper = document.getElementById('bordado-slider');
+        let currentSlide = 0;
+        let sliderInterval;
+        const SLIDE_DURATION = 3000;
+        
+        if (sliderContainer && sliderDots) {
+            sliderImages.forEach(function(img, idx) {
+                const slide = document.createElement('div');
+                slide.className = 'bordado-slide' + (idx === 0 ? ' active' : '');
+                slide.style.backgroundImage = 'url(' + basePath + img + ')';
+                sliderContainer.appendChild(slide);
+                
+                const dot = document.createElement('span');
+                dot.className = 'bordado-dot' + (idx === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Ir para slide ' + (idx + 1));
+                dot.addEventListener('click', function() { showSlide(idx); });
+                sliderDots.appendChild(dot);
+            });
+            
+            function showSlide(index) {
+                const slides = sliderContainer.querySelectorAll('.bordado-slide');
+                const dots = sliderDots.querySelectorAll('.bordado-dot');
+                slides.forEach(function(s) { s.classList.remove('active'); });
+                dots.forEach(function(d) { d.classList.remove('active'); });
+                if (index >= slides.length) currentSlide = 0;
+                else if (index < 0) currentSlide = slides.length - 1;
+                else currentSlide = index;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() { showSlide(currentSlide + 1); }
+            function prevSlide() { showSlide(currentSlide - 1); }
+            
+            function startSlider() {
+                stopSlider();
+                sliderInterval = setInterval(nextSlide, SLIDE_DURATION);
+            }
+            function stopSlider() {
+                if (sliderInterval) clearInterval(sliderInterval);
+            }
+            
+            const prevBtn = sliderWrapper.querySelector('.bordado-slider-arrow.prev');
+            const nextBtn = sliderWrapper.querySelector('.bordado-slider-arrow.next');
+            if (prevBtn) prevBtn.addEventListener('click', function() { prevSlide(); startSlider(); });
+            if (nextBtn) nextBtn.addEventListener('click', function() { nextSlide(); startSlider(); });
+            
+            sliderWrapper.addEventListener('mouseenter', stopSlider);
+            sliderWrapper.addEventListener('mouseleave', startSlider);
+            
+            startSlider();
+        }
+        
+        // ===== GALLERY =====
+        const gallery = document.getElementById('bordado-gallery');
+        if (gallery) {
+            function shuffle(arr) {
+                var a = arr.slice();
+                for (var i = a.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+                }
+                return a;
+            }
+            
+            var selected = shuffle(galleryPool).slice(0, 8);
+            
+            selected.forEach(function(img) {
+                var wrapper = document.createElement('div');
+                wrapper.style.cssText = 'display:block;overflow:hidden;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:transform 0.35s,box-shadow 0.35s;cursor:pointer;';
+                
+                var imgEl = document.createElement('img');
+                imgEl.src = basePath + img;
+                imgEl.alt = 'Bordado sobre fotografia – Oficina de Bordado e Memória no Cabana';
+                imgEl.loading = 'lazy';
+                imgEl.style.cssText = 'width:100%;height:280px;object-fit:cover;display:block;transition:transform 0.45s;';
+                
+                wrapper.appendChild(imgEl);
+                
+                wrapper.addEventListener('mouseenter', function() {
+                    wrapper.style.transform = 'translateY(-6px)';
+                    wrapper.style.boxShadow = '0 12px 28px rgba(0,0,0,0.15)';
+                    imgEl.style.transform = 'scale(1.06)';
+                });
+                wrapper.addEventListener('mouseleave', function() {
+                    wrapper.style.transform = '';
+                    wrapper.style.boxShadow = '';
+                    imgEl.style.transform = '';
+                });
+                
+                wrapper.addEventListener('click', function() {
+                    lightbox.open(basePath + img);
+                });
+                
+                gallery.appendChild(wrapper);
+            });
+        }
+    })();
+    </script>
+
+    <!-- Partners / Logos Footer Section -->
+    <footer class="logos-footer">
+        <div class="logos-container">
+            
+            <!-- Realização -->
+            <div class="logos-group">
+                <p class="logos-group-title">Realização</p>
+                <div class="logos-grid grid-1">
+                    <img src="assets/logo-sofia.png" alt="Logo SoFiA Extensão Popular" class="partner-logo">
+                </div>
+            </div>
+
+            <!-- Financiamento -->
+            <div class="logos-group">
+                <p class="logos-group-title">Financiamento</p>
+                <div class="logos-grid grid-2">
+                    <img src="assets/logo-fapemig.png" alt="Logo FAPEMIG" class="partner-logo">
+                    <img src="assets/logo-dedc.png" alt="Logo DEDC CEFET-MG" class="partner-logo">
+                </div>
+            </div>
+
+            <!-- Parceiros -->
+            <div class="logos-group">
+                <p class="logos-group-title">Parceiros</p>
+                <div class="logos-grid grid-4">
+                    <img src="assets/logo-conecta-cabana.png" alt="Logo Conecta Cabana" class="partner-logo">
+                    <img src="assets/logo-compet.png" alt="Logo COMPET CEFET-MG" class="partner-logo">
+                    <img src="assets/logo-pet-connectte.png" alt="Logo PET ConecTTE" class="partner-logo">
+                    <img src="assets/logo-geptt.png" alt="Logo GEPTT" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Footer -->
+    <footer class="bottom-footer">
+        <div class="bottom-container">
+            <p>Copyright &copy; 2026 Crias do Cabana | Powered by Astra WordPress Theme</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>
