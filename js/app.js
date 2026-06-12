@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fixNavigationLinks() {
-    const guardaHref = 'guarda-de-congo-sao-benedito.html';
-    const colecoesHref = 'colecoes-artes.html';
+    const guardaHref = '/Crias_do_Cabana/guarda-de-congo-sao-benedito/';
+    const colecoesHref = '/Crias_do_Cabana/colecoes-artes/';
 
     document.querySelectorAll('a').forEach((link) => {
         const text = link.textContent.replace(/\s+/g, ' ').trim();
